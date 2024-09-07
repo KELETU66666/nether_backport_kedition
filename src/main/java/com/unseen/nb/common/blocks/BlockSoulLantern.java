@@ -74,7 +74,7 @@ public class BlockSoulLantern extends BlockBase {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{IS_HANGING});
+        return new BlockStateContainer(this, IS_HANGING);
     }
 
 

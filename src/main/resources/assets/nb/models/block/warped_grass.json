@@ -1,7 +1,7 @@
 {
   "parent": "block/grass",
   "textures": {
-    "particle": "nb:blocks/crimson_grass_bottom",
+    "particle": "minecraft:blocks/netherrack",
     "top": "nb:blocks/warped_grass_top",
     "side": "nb:blocks/warped_grass_side",
     "bottom": "minecraft:blocks/netherrack",

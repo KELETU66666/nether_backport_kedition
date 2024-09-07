@@ -2,6 +2,7 @@ package com.unseen.nb.proxy;
 
 import com.unseen.nb.client.animation.IAnimatedEntity;
 import com.unseen.nb.client.particles.ParticleObsidianTear;
+import com.unseen.nb.client.particles.ParticleSoul;
 import com.unseen.nb.client.particles.ParticleSoulFlame;
 import com.unseen.nb.handler.RenderHandler;
 import net.minecraft.client.Minecraft;
@@ -14,6 +15,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy{
 
     public void init() {
@@ -71,10 +73,14 @@ public class ClientProxy extends CommonProxy{
         }
     }
 
+    public IParticleFactory getParticleFactory() {
+        return new ParticleSoul.Factory();
+    }
+
     @Override
-    public void spawnSoulParticle(IParticleFactory particle, World worldIn, double x, double y, double z, double motX, double motY, double motZ) {
+    public void spawnSoulParticle(World worldIn, double x, double y, double z, double motX, double motY, double motZ) {
         if(worldIn == null) worldIn = Minecraft.getMinecraft().world;
 
-        Minecraft.getMinecraft().effectRenderer.addEffect(particle.createParticle(0, worldIn, x, y, z, motX, motY, motZ));
+        Minecraft.getMinecraft().effectRenderer.addEffect(getParticleFactory().createParticle(0, worldIn, x, y, z, motX, motY, motZ));
     }
 }

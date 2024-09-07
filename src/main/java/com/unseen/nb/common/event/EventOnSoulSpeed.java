@@ -50,7 +50,7 @@ public class EventOnSoulSpeed {
                 }
 
                 if(entityIn.motionX != 0 && entityIn.motionZ != 0 && entityIn.ticksExisted % 5 == 0) {
-                    Main.proxy.spawnSoulParticle(new ParticleSoul.Factory(), worldIn, entityIn.posX, entityIn.posY, entityIn.posZ, entityIn.motionX, entityIn.motionY, entityIn.motionZ);
+                    Main.proxy.spawnSoulParticle(worldIn, entityIn.posX, entityIn.posY, entityIn.posZ, entityIn.motionX, entityIn.motionY, entityIn.motionZ);
                     float f = worldIn.rand.nextFloat() * 0.4F + worldIn.rand.nextFloat() > 0.9F ? 0.6F : 0.0F;
                     worldIn.playSound(null, blockPos, ModSoundHandler.SOUL_SAND_SCREAM, SoundCategory.AMBIENT, f, 0.6F + worldIn.rand.nextFloat() * 0.4F);
                 }
