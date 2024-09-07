@@ -128,7 +128,7 @@ public class BlockNetherVines extends Block implements IPlantable, IHasModel {
         }
     }
 
-    private boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
+    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
         return this.canPlaceBlockAt(worldIn, pos);
     }
 
