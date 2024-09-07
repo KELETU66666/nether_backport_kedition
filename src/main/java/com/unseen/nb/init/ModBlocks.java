@@ -4,9 +4,6 @@ import com.unseen.nb.common.blocks.*;
 import com.unseen.nb.common.blocks.base.*;
 import com.unseen.nb.common.blocks.base.slab.BlockDoubleSlab;
 import com.unseen.nb.common.blocks.base.slab.BlockHalfSlab;
-import com.unseen.nb.common.blocks.base.slab.BlockSlabBase;
-import com.unseen.nb.util.integration.ModIntegration;
-import net.minecraft.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSlab;
@@ -90,10 +87,6 @@ public class ModBlocks {
 
     public static final Block SMOOTH_BASALT = new BlockBase("smooth_basalt", Material.ROCK, STONE_HARDNESS, STONE_RESISTANCE, NBSoundTypes.BASALT).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static final Block CRYING_OBSIDIAN = new BlockCryingObsidian("cry_obi", Material.ROCK, OBSIDIAN_HARDNESS, OBSIDIAN_RESISTANCE, SoundType.STONE).setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setLightLevel(0.7F);
-
-    public static final Block NETHERITE_BLOCK = new BlockBase("netherite_block", Material.ROCK, STONE_HARDNESS, STONE_RESISTANCE, NBSoundTypes.NETHERITE).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-
-    public static final Block NETHERITE_ORE = new BlockBase("netherite_ore", Material.ROCK, OBSIDIAN_HARDNESS, OBSIDIAN_RESISTANCE, NBSoundTypes.ANCIENT_DEBRIS).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
     public static final Block GILDED_BLACKSTONE = new BlockGildedBlackstone("gilded_blackstone", Material.ROCK, STONE_HARDNESS, STONE_RESISTANCE, NBSoundTypes.NETHER_ORE).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 

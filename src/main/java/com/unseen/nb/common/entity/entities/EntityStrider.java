@@ -45,9 +45,9 @@ import java.util.Set;
  * @link https://www.curseforge.com/minecraft/mc-mods/netherized
  */
 public class EntityStrider extends EntityAnimal {
-    private static final DataParameter<Boolean> IS_COLD = EntityDataManager.<Boolean>createKey(EntityStrider.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> IS_SADDLED = EntityDataManager.<Boolean>createKey(EntityStrider.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.<Integer>createKey(EntityStrider.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> IS_COLD = EntityDataManager.createKey(EntityStrider.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IS_SADDLED = EntityDataManager.createKey(EntityStrider.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> BOOST_TIME = EntityDataManager.createKey(EntityStrider.class, DataSerializers.VARINT);
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Item.getItemFromBlock(ModBlocks.WARPED_FUNGUS));
     private boolean boosting;
     private int boostTime;
@@ -70,9 +70,9 @@ public class EntityStrider extends EntityAnimal {
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(BOOST_TIME, Integer.valueOf(0));
-        this.dataManager.register(IS_COLD, Boolean.valueOf(false));
-        this.dataManager.register(IS_SADDLED, Boolean.valueOf(false));
+        this.dataManager.register(BOOST_TIME, 0);
+        this.dataManager.register(IS_COLD, false);
+        this.dataManager.register(IS_SADDLED, false);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class EntityStrider extends EntityAnimal {
         if (BOOST_TIME.equals(key) && this.world.isRemote) {
             this.boosting = true;
             this.boostTime = 0;
-            this.totalBoostTime = ((Integer)this.dataManager.get(BOOST_TIME)).intValue();
+            this.totalBoostTime = this.dataManager.get(BOOST_TIME);
         }
         super.notifyDataManagerChange(key);
     }
@@ -186,7 +186,7 @@ public class EntityStrider extends EntityAnimal {
                 return true;
             } else if (itemstack.getItem() == Items.SADDLE) {
                 itemstack.interactWithEntity(player, this, hand);
-                this.world.playSound((EntityPlayer)null, this.posX, this.posY + 0.5F, this.posZ, SoundEvents.ENTITY_PIG_SADDLE, this.getSoundCategory(), 1.0F, 1.0F);
+                this.world.playSound(null, this.posX, this.posY + 0.5F, this.posZ, SoundEvents.ENTITY_PIG_SADDLE, this.getSoundCategory(), 1.0F, 1.0F);
                 this.setIsSaddled(true);
                 itemstack.shrink(1);
                 return true;
@@ -348,7 +348,7 @@ public class EntityStrider extends EntityAnimal {
             this.boosting = true;
             this.boostTime = 0;
             this.totalBoostTime = this.getRNG().nextInt(841) + 140;
-            this.getDataManager().set(BOOST_TIME, Integer.valueOf(this.totalBoostTime));
+            this.getDataManager().set(BOOST_TIME, this.totalBoostTime);
             return true;
         }
     }
@@ -360,15 +360,15 @@ public class EntityStrider extends EntityAnimal {
     }
 
     public boolean getIsSaddled() {
-        return this.dataManager.get(IS_SADDLED).booleanValue();
+        return this.dataManager.get(IS_SADDLED);
     }
 
     public void setIsSaddled(boolean saddled) {
-        this.dataManager.set(IS_SADDLED, Boolean.valueOf(saddled));
+        this.dataManager.set(IS_SADDLED, saddled);
     }
 
     public boolean getIsCold() {
-        return this.dataManager.get(IS_COLD).booleanValue();
+        return this.dataManager.get(IS_COLD);
     }
 
     public void setIsCold(boolean isCold) {

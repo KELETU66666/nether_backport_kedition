@@ -5,7 +5,6 @@ import com.unseen.nb.init.ModBlocksCompat;
 import com.unseen.nb.init.ModItems;
 import com.unseen.nb.init.ModItemsCompat;
 import com.unseen.nb.util.ModReference;
-import com.unseen.nb.util.ModUtils;
 import com.unseen.nb.util.integration.ModIntegration;
 import com.unseen.nb.util.mapper.AdvancedStateMap;
 import net.minecraft.block.Block;

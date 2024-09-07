@@ -286,7 +286,7 @@ public class BlockNetherVines extends Block implements IPlantable, IHasModel {
 
             for (int k = 0; k < growthAmount; ++k) {
                 if (!worldIn.isAirBlock(blockPos)) return;
-                worldIn.setBlockState(blockPos, state.withProperty(AGE, Integer.valueOf(age)));
+                worldIn.setBlockState(blockPos, state.withProperty(AGE, age));
                 blockPos = blockPos.offset(this.side);
                 age = Math.min(age + 1, 15);
             }

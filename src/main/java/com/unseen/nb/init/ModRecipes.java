@@ -10,7 +10,7 @@ public class ModRecipes {
 
         public static void init() {
                 //Smelting Recipes
-                GameRegistry.addSmelting(ModBlocks.NETHERITE_ORE, new ItemStack(ModItems.NETHERITE_SCRAP, 2), 2);
+                GameRegistry.addSmelting(ModBlocksCompat.NETHERITE_ORE, new ItemStack(ModItemsCompat.NETHERITE_SCRAP, 2), 2);
                 GameRegistry.addSmelting(ModBlocks.BLACK_STONE_BRICKS, new ItemStack(ModBlocks.CRACKED_STONE_BRICKS), 1);
                 GameRegistry.addSmelting(ModBlocks.BASALT, new ItemStack(ModBlocks.SMOOTH_BASALT), 1);
                 //OreRegistry

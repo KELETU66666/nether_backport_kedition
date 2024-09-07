@@ -44,7 +44,7 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
 
     public static final EZAnimation ANIMATION_ATTACK_MELEE = EZAnimation.create(25);
     protected static final DataParameter<Boolean> MELEE_ATTACK = EntityDataManager.createKey(EntityPiglinBrute.class, DataSerializers.BOOLEAN);
-    protected void setMeleeAttack(boolean value) {this.dataManager.set(MELEE_ATTACK, Boolean.valueOf(value));}
+    protected void setMeleeAttack(boolean value) {this.dataManager.set(MELEE_ATTACK, value);}
     public boolean isMeleeAttack() {return this.dataManager.get(MELEE_ATTACK);}
     private Consumer<EntityLivingBase> prevAttack;
 
@@ -79,7 +79,7 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(MELEE_ATTACK, Boolean.valueOf(false));
+        this.dataManager.register(MELEE_ATTACK, false);
     }
 
     @Override

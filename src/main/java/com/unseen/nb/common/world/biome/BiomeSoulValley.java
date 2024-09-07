@@ -10,8 +10,6 @@ import com.unseen.nb.common.world.terrain.fossils.WorldGenReplaceOnRand;
 import com.unseen.nb.init.ModBlocks;
 import com.unseen.nb.init.ModSoundHandler;
 import com.unseen.nb.util.ModRand;
-import com.unseen.nb.util.ModUtils;
-import com.unseen.nb.util.integration.ModIntegration;
 import git.jbredwards.nether_api.api.audio.IMusicType;
 import git.jbredwards.nether_api.api.audio.ISoundAmbience;
 import git.jbredwards.nether_api.api.audio.impl.SoundAmbience;
@@ -35,7 +33,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import thedarkcolour.futuremc.registry.FBlocks;
 
 import javax.annotation.Nonnull;
 import java.util.Random;

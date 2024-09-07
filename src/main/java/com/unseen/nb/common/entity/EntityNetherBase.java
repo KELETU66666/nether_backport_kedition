@@ -35,9 +35,9 @@ public abstract class EntityNetherBase extends EntityMob {
 
     public boolean isFightMode() {return this.dataManager.get(FIGHT_MODE);}
 
-    protected void setFightMode(boolean value) {this.dataManager.set(FIGHT_MODE, Boolean.valueOf(value));}
+    protected void setFightMode(boolean value) {this.dataManager.set(FIGHT_MODE, value);}
     public boolean isInsideBastion() {return this.dataManager.get(INSIDE_BASTION);}
-    public void setInsideBastion(boolean value) {this.dataManager.set(INSIDE_BASTION, Boolean.valueOf(value));}
+    public void setInsideBastion(boolean value) {this.dataManager.set(INSIDE_BASTION, value);}
     public EntityNetherBase(World worldIn) {
         super(worldIn);
     }
@@ -83,9 +83,9 @@ public abstract class EntityNetherBase extends EntityMob {
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(IMMOVABLE, Boolean.valueOf(false));
-        this.dataManager.register(FIGHT_MODE, Boolean.valueOf(false));
-        this.dataManager.register(INSIDE_BASTION, Boolean.valueOf(false));
+        this.dataManager.register(IMMOVABLE, false);
+        this.dataManager.register(FIGHT_MODE, false);
+        this.dataManager.register(INSIDE_BASTION, false);
     }
 
 

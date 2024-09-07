@@ -1,7 +1,6 @@
 package com.unseen.nb.common.entity.entities;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.oblivioussp.spartanweaponry.init.ItemRegistrySW;
 import com.unseen.nb.client.animation.EZAnimation;
 import com.unseen.nb.client.animation.EZAnimationHandler;
@@ -10,7 +9,6 @@ import com.unseen.nb.common.entity.EntityNetherBase;
 import com.unseen.nb.common.entity.entities.ai.EntityTimedAttackPiglin;
 import com.unseen.nb.common.entity.entities.ai.IAttack;
 import com.unseen.nb.config.ModConfig;
-import com.unseen.nb.init.ModBlocks;
 import com.unseen.nb.init.ModSoundHandler;
 import com.unseen.nb.util.ModRand;
 import com.unseen.nb.util.ModReference;
@@ -28,7 +26,6 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -47,7 +44,10 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.smileycorp.crossbows.common.CrossbowsContent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
 
 public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, IAttack {
@@ -82,17 +82,17 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     public boolean isHasBoots() {return this.dataManager.get(HASBOOTS);}
     public boolean isRandArmor() {return this.dataManager.get(RAND_ARMOR);}
     public boolean isLoadedACrossBow() {return this.dataManager.get(LOADED_CROSSBOW);}
-    protected void setMeleeAttack(boolean value) {this.dataManager.set(MELEE_ATTACK, Boolean.valueOf(value));}
-    protected void setRangedAttack(boolean value) {this.dataManager.set(RANGED_ATTACK, Boolean.valueOf(value));}
-    protected void setShortTrade(boolean value) {this.dataManager.set(SHORT_TRADE, Boolean.valueOf(value));}
-    protected void setLongTrade(boolean value) {this.dataManager.set(LONG_TRADE, Boolean.valueOf(value));}
-    protected void setHasRanged(boolean value) {this.dataManager.set(HAS_RANGED, Boolean.valueOf(value));}
-    protected void setHasMelee(boolean value) {this.dataManager.set(HAS_MELEE, Boolean.valueOf(value));}
-    protected void setHasHelmet(boolean value) {this.dataManager.set(HASHELMET, Boolean.valueOf(value));}
-    protected void setHasChest(boolean value) {this.dataManager.set(HASCHEST, Boolean.valueOf(value));}
-    protected void setHasBoots(boolean value) {this.dataManager.set(HASBOOTS, Boolean.valueOf(value));}
-    protected void setRandArmor(boolean value) {this.dataManager.set(RAND_ARMOR, Boolean.valueOf(value));}
-    protected void setLoadedACrossBow(boolean value) {this.dataManager.set(LOADED_CROSSBOW, Boolean.valueOf(value));}
+    protected void setMeleeAttack(boolean value) {this.dataManager.set(MELEE_ATTACK, value);}
+    protected void setRangedAttack(boolean value) {this.dataManager.set(RANGED_ATTACK, value);}
+    protected void setShortTrade(boolean value) {this.dataManager.set(SHORT_TRADE, value);}
+    protected void setLongTrade(boolean value) {this.dataManager.set(LONG_TRADE, value);}
+    protected void setHasRanged(boolean value) {this.dataManager.set(HAS_RANGED, value);}
+    protected void setHasMelee(boolean value) {this.dataManager.set(HAS_MELEE, value);}
+    protected void setHasHelmet(boolean value) {this.dataManager.set(HASHELMET, value);}
+    protected void setHasChest(boolean value) {this.dataManager.set(HASCHEST, value);}
+    protected void setHasBoots(boolean value) {this.dataManager.set(HASBOOTS, value);}
+    protected void setRandArmor(boolean value) {this.dataManager.set(RAND_ARMOR, value);}
+    protected void setLoadedACrossBow(boolean value) {this.dataManager.set(LOADED_CROSSBOW, value);}
 
 
     private Consumer<EntityLivingBase> prevAttack;
@@ -198,17 +198,17 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(MELEE_ATTACK, Boolean.valueOf(false));
-        this.dataManager.register(RANGED_ATTACK, Boolean.valueOf(false));
-        this.dataManager.register(SHORT_TRADE, Boolean.valueOf(false));
-        this.dataManager.register(LONG_TRADE, Boolean.valueOf(false));
-        this.dataManager.register(HAS_MELEE, Boolean.valueOf(false));
-        this.dataManager.register(HAS_RANGED, Boolean.valueOf(false));
-        this.dataManager.register(HASHELMET, Boolean.valueOf(false));
-        this.dataManager.register(HASCHEST, Boolean.valueOf(false));
-        this.dataManager.register(HASBOOTS, Boolean.valueOf(false));
-        this.dataManager.register(RAND_ARMOR, Boolean.valueOf(false));
-        this.dataManager.register(LOADED_CROSSBOW, Boolean.valueOf(false));
+        this.dataManager.register(MELEE_ATTACK, false);
+        this.dataManager.register(RANGED_ATTACK, false);
+        this.dataManager.register(SHORT_TRADE, false);
+        this.dataManager.register(LONG_TRADE, false);
+        this.dataManager.register(HAS_MELEE, false);
+        this.dataManager.register(HAS_RANGED, false);
+        this.dataManager.register(HASHELMET, false);
+        this.dataManager.register(HASCHEST, false);
+        this.dataManager.register(HASBOOTS, false);
+        this.dataManager.register(RAND_ARMOR, false);
+        this.dataManager.register(LOADED_CROSSBOW, false);
     }
 
     @Override
