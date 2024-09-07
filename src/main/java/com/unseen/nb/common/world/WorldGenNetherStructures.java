@@ -10,14 +10,11 @@ import com.unseen.nb.util.ModRand;
 import git.jbredwards.nether_api.mod.common.config.NetherAPIConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;

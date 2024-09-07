@@ -2,7 +2,6 @@ package com.unseen.nb.common.event;
 
 
 import com.unseen.nb.Main;
-import com.unseen.nb.client.particles.ParticleSoul;
 import com.unseen.nb.common.enchantments.NBEnchantmentSoulSpeed;
 import com.unseen.nb.common.items.netherite.ItemNBHorseArmor;
 import com.unseen.nb.init.ModEnchantments;

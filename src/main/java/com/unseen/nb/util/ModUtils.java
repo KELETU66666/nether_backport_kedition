@@ -1,7 +1,6 @@
 package com.unseen.nb.util;
 
 import com.google.common.collect.Lists;
-import com.unseen.nb.common.enchantments.NBEnchantmentSoulSpeed;
 import com.unseen.nb.config.ModConfig;
 import com.unseen.nb.init.ModBlocks;
 import com.unseen.nb.init.ModEnchantments;
@@ -20,10 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;

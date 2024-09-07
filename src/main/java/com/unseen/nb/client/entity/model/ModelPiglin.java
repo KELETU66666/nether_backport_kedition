@@ -10,12 +10,9 @@ import com.unseen.nb.client.animation.model.BasicModelPart;
 import com.unseen.nb.client.animation.model.EZModelAnimator;
 import com.unseen.nb.client.animation.util.EZMath;
 import com.unseen.nb.common.entity.entities.EntityPiglin;
-import com.unseen.nb.util.ModRand;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.EnumHandSide;
 
 public class ModelPiglin extends BasicModelEntity {

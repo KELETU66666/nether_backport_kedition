@@ -3,18 +3,11 @@ package com.unseen.nb.common.blocks;
 import com.unseen.nb.common.blocks.base.BlockBase;
 import com.unseen.nb.init.ModBlocks;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockGrass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

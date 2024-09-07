@@ -14,10 +14,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -232,7 +230,7 @@ public class EntityStrider extends EntityAnimal {
         entityIn.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
         entityIn.onInitialSpawn(difficultyIn, livingData);
         this.world.spawnEntity(entityIn);
-        entityIn.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ModItems.FUNGUS_ON_STICK.getDefaultInstance());
+        entityIn.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.FUNGUS_ON_STICK));
         entityIn.startRiding(this);
         return livingData;
     }

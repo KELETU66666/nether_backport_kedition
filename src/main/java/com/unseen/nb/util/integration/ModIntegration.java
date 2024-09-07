@@ -3,7 +3,6 @@ package com.unseen.nb.util.integration;
 
 import com.unseen.nb.common.entity.entities.EntityPiglin;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 

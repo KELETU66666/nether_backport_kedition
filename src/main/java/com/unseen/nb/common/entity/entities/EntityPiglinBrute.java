@@ -20,6 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -52,7 +53,7 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
 
     public EntityPiglinBrute(World worldIn) {
         super(worldIn);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_AXE.getDefaultInstance());
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));
         this.experienceValue = 20;
         this.isImmuneToFire = true;
     }

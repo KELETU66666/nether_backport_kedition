@@ -1,6 +1,5 @@
 package com.unseen.nb.common.entity;
 
-import akka.japi.pf.FI;
 import com.unseen.nb.common.entity.util.MobGroundNavigate;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.MoverType;

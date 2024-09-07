@@ -1,10 +1,8 @@
 package com.unseen.nb.init;
 
 
-import com.unseen.nb.util.ModReference;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 

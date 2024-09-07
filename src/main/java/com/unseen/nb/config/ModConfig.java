@@ -2,10 +2,7 @@ package com.unseen.nb.config;
 
 
 import com.unseen.nb.util.ModReference;
-import com.unseen.nb.util.ModUtils;
 import net.minecraftforge.common.config.Config;
-
-import java.util.ArrayList;
 
 @Config(modid = ModReference.MOD_ID, name = ModReference.NAME)
 public class ModConfig {

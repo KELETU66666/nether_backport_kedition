@@ -14,20 +14,13 @@ import com.unseen.nb.util.ModReference;
 import com.unseen.nb.util.ModUtils;
 import com.unseen.nb.util.integration.ModIntegration;
 import net.minecraft.block.Block;
-import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
-import net.minecraft.dispenser.PositionImpl;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -38,18 +31,17 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootTable;
-import net.minecraftforge.fml.common.Mod;
-import net.smileycorp.crossbows.common.Crossbows;
 import net.smileycorp.crossbows.common.CrossbowsContent;
-import net.smileycorp.crossbows.common.item.ItemCrossbow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -142,26 +134,26 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
             if(worldIn.rand.nextInt(2) == 0) {
                 this.setHasRanged(true);
                 if(ModIntegration.CROSSBOWS_BACKPORT_LOADED) {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, CrossbowsContent.CROSSBOW.getDefaultInstance());
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(CrossbowsContent.CROSSBOW));
                 } else {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.BOW.getDefaultInstance());
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
                 }
                 this.initRangedAI();
             } else {
                 this.setHasMelee(true);
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_SWORD.getDefaultInstance());
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
                 this.initMeleeAI();
             }
         } else {
             if(this.isHasRanged()) {
                 if(ModIntegration.CROSSBOWS_BACKPORT_LOADED) {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, CrossbowsContent.CROSSBOW.getDefaultInstance());
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(CrossbowsContent.CROSSBOW));
                 } else {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.BOW.getDefaultInstance());
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
                 }
                 this.initRangedAI();
             } else if(this.isHasMelee()) {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_SWORD.getDefaultInstance());
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
                 this.initMeleeAI();
             }
         }
@@ -317,7 +309,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                         this.getNavigator().tryMoveToEntityLiving(item, 1.2D);
                         if(distSq < 2) {
                             item.getItem().shrink(1);
-                            this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, Items.GOLD_INGOT.getDefaultInstance());
+                            this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.GOLD_INGOT));
                             foundGoldIngot = true;
                             this.doTrade();
                             trade_delay = 160;
@@ -411,7 +403,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
         addEvent(()-> {
             this.setFightMode(false);
             this.setShortTrade(false);
-            this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, Items.AIR.getDefaultInstance());
+            this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY);
             this.setAnimation(NO_ANIMATION);
             this.foundGoldIngot = false;
         }, 120);
