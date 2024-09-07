@@ -2,6 +2,7 @@ package com.unseen.nb.common.blocks;
 
 import com.unseen.nb.handler.IHasModel;
 import com.unseen.nb.init.ModBlocks;
+import com.unseen.nb.init.ModItems;
 import com.unseen.nb.util.ModReference;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -20,6 +21,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -60,6 +62,9 @@ public class BlockNetherVines extends Block implements IPlantable, IHasModel {
 
         this.side = sideIn;
         this.forestType = forestTypeIn;
+
+        ModBlocks.BLOCKS.add(this);
+        ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override
@@ -315,7 +320,7 @@ public class BlockNetherVines extends Block implements IPlantable, IHasModel {
         }
     }
 
-    enum EnumNetherForestType {
+    public enum EnumNetherForestType {
         CRIMSON(),
         WARPED();
 

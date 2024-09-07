@@ -5,11 +5,11 @@ import com.unseen.nb.common.blocks.base.*;
 
 import com.unseen.nb.common.blocks.base.slab.BlockDoubleSlab;
 import com.unseen.nb.common.blocks.base.slab.BlockHalfSlab;
-import com.unseen.nb.common.blocks.base.slab.BlockSlabBase;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.EnumFacing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,9 +127,9 @@ public class ModBlocks {
 
     public static Block WARPED_SPROUT = new BlockSmallPlantBase("warped_sprout", Material.PLANTS, NBSoundTypes.SPROUT);
 
-    public static Block CRIMSON_VINES = new BlockVineBase("crimson_vine", Material.PLANTS, NBSoundTypes.ROOTS);
+    public static Block CRIMSON_VINES = new BlockNetherVines("weeping_vines", Material.PLANTS, MapColor.RED, BlockNetherVines.EnumNetherForestType.CRIMSON, EnumFacing.DOWN, SoundType.PLANT, CreativeTabs.DECORATIONS);
 
-    public static Block WARPED_VINES = new BlockVineUpBase("warped_vine", Material.PLANTS, NBSoundTypes.ROOTS);
+    public static Block WARPED_VINES = new BlockNetherVines("twisting_vines", Material.PLANTS, MapColor.CYAN, BlockNetherVines.EnumNetherForestType.WARPED, EnumFacing.UP, SoundType.PLANT, CreativeTabs.DECORATIONS);
 
     public static Block SOUL_FIRE = new BlockSoulFire(CreativeTabs.DECORATIONS, "soul_fire").setLightLevel(1.0F);
 
