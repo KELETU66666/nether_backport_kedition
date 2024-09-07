@@ -1,6 +1,8 @@
 package com.unseen.nb.common.entity.entities;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import com.oblivioussp.spartanweaponry.init.ItemRegistrySW;
 import com.unseen.nb.client.animation.EZAnimation;
 import com.unseen.nb.client.animation.EZAnimationHandler;
 import com.unseen.nb.client.animation.IAnimatedEntity;
@@ -8,6 +10,7 @@ import com.unseen.nb.common.entity.EntityNetherBase;
 import com.unseen.nb.common.entity.entities.ai.EntityTimedAttackPiglin;
 import com.unseen.nb.common.entity.entities.ai.IAttack;
 import com.unseen.nb.config.ModConfig;
+import com.unseen.nb.init.ModBlocks;
 import com.unseen.nb.init.ModSoundHandler;
 import com.unseen.nb.util.ModRand;
 import com.unseen.nb.util.ModReference;
@@ -25,6 +28,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -43,10 +47,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.smileycorp.crossbows.common.CrossbowsContent;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, IAttack {
@@ -135,13 +136,40 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                 this.setHasRanged(true);
                 if(ModIntegration.CROSSBOWS_BACKPORT_LOADED) {
                     this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(CrossbowsContent.CROSSBOW));
+                } else if (ModIntegration.SPARTAN_WEAPONRY_LOADED) {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.crossbowWood));
                 } else {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
                 }
                 this.initRangedAI();
             } else {
                 this.setHasMelee(true);
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+                if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
+                    int randomInterval = ModRand.range(1, 8);
+                    if(randomInterval == 1) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.greatswordGold));
+                    }
+                    if(randomInterval == 2) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.katanaGold));
+                    }
+                    if(randomInterval == 3) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.rapierGold));
+                    }
+                    if(randomInterval == 4) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.saberGold));
+                    }
+                    if(randomInterval == 5) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.scytheGold));
+                    }
+                    if(randomInterval == 6) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.spearGold));
+                    }
+                    if(randomInterval == 7) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+                    }
+                } else {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+                }
                 this.initMeleeAI();
             }
         } else {
@@ -310,9 +338,41 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                         if(distSq < 2) {
                             item.getItem().shrink(1);
                             this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.GOLD_INGOT));
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(CrossbowsContent.CROSSBOW));
+                }  else if (ModIntegration.SPARTAN_WEAPONRY_LOADED) {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.crossbowWood));
+                }else {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+
+                if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
+                    int randomInterval = ModRand.range(1, 8);
+                    if(randomInterval == 1) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.greatswordGold));
+                    }
+                    if(randomInterval == 2) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.katanaGold));
+                    }
+                    if(randomInterval == 3) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.rapierGold));
+                    }
+                    if(randomInterval == 4) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.saberGold));
+                    }
+                    if(randomInterval == 5) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.scytheGold));
+                    }
+                    if(randomInterval == 6) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.spearGold));
+                    }
+                    if(randomInterval == 7) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+                    }
+                } else {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+                }
                             foundGoldIngot = true;
                             this.doTrade();
-                            trade_delay = 160;
+                            trade_delay = ModConfig.piglins_trade_cooldown;
                         }
 
                         } else {
@@ -355,8 +415,10 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                 }
             }
         }
-
-        if(this.isInsideBastion() && !initiateBastionAI) {
+        if(!ModConfig.piglins_are_aggro && !initiateBastionAI) {
+            this.setInsideBastion(false);
+            this.initiateBastionAI = true;
+        } else if(this.isInsideBastion() && !initiateBastionAI) {
             this.addBastionChanges();
         }
 

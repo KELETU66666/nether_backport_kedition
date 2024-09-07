@@ -1,5 +1,6 @@
 package com.unseen.nb.common.entity.entities;
 
+import com.oblivioussp.spartanweaponry.init.ItemRegistrySW;
 import com.unseen.nb.client.animation.EZAnimation;
 import com.unseen.nb.client.animation.EZAnimationHandler;
 import com.unseen.nb.client.animation.IAnimatedEntity;
@@ -11,6 +12,7 @@ import com.unseen.nb.init.ModSoundHandler;
 import com.unseen.nb.util.ModRand;
 import com.unseen.nb.util.ModReference;
 import com.unseen.nb.util.ModUtils;
+import com.unseen.nb.util.integration.ModIntegration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -53,7 +55,23 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
 
     public EntityPiglinBrute(World worldIn) {
         super(worldIn);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));
+        if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
+            int randomInterval = ModRand.range(1, 5);
+            if(randomInterval == 1) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.hammerGold));
+            }
+            if(randomInterval == 2) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.halberdGold));
+            }
+            if(randomInterval == 3) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.battleaxeGold));
+            }
+            if(randomInterval == 4) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));
+            }
+        } else {
+            this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));
+        }
         this.experienceValue = 20;
         this.isImmuneToFire = true;
     }
@@ -117,6 +135,13 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
 
         if(target != null && !hasPlayedAngrySound) {
             this.playSound(ModSoundHandler.BRUTE_ANGRY, 1.0f, 1.0f / (rand.nextFloat() * 0.4f + 0.5f));
+            //Allows Brutes to call on nearby Piglins to aid
+            List<EntityPiglin> nearbyPiglins = this.world.getEntitiesWithinAABB(EntityPiglin.class, this.getEntityBoundingBox().grow(12D), e -> !e.getIsInvulnerable());
+            if(!nearbyPiglins.isEmpty()) {
+                for(EntityPiglin piglin : nearbyPiglins) {
+                    piglin.setAttackTarget(target);
+                }
+            }
             hasPlayedAngrySound = true;
         } else if (target == null) {
             hasPlayedAngrySound = false;

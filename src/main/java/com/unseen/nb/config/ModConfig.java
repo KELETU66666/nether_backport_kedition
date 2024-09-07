@@ -7,11 +7,25 @@ import net.minecraftforge.common.config.Config;
 @Config(modid = ModReference.MOD_ID, name = ModReference.NAME)
 public class ModConfig {
 
-
+    @Config.Name("FutureMC Compat")
+    @Config.Comment("This setting allows for easy integration with FutureMC, removing copied blocks & items from here and replacing them with FutureMC, default: true")
+    @Config.RequiresMcRestart
+    public static boolean futureMCCompat = true;
     @Config.Name("Bastion Remnants Spawn Frequency")
     @Config.Comment("Change the spacing between Bastion Remnants, lower means more frequent, higher means less")
     @Config.RequiresMcRestart
     public static int bastionFrequency = 100;
+
+    @Config.Name("Bastion Remnants Y-level")
+    @Config.Comment("Change the Y-level the Bastion Remnants spawn at, NOTE: this is the level that bridges for will spawn at")
+    @Config.RequiresMcRestart
+    public static double bastionYLevel = 41;
+
+    @Config.Name("Bastion Remnants & Nether Portal Ruins Biomes Blacklist")
+    @Config.Comment("This list acts as a black list for the remnants & nether portal ruins to NOT spawn in")
+    @Config.RequiresMcRestart
+    public static String[] remnantsBiomesNotAllowed = {"nb:basalt_deltas"};
+
 
     @Config.Name("Portal Ruins Overworld Spawn Rate")
     @Config.Comment("Change the rate that ruined portals in the overworld spawn at, lower means more frequent, higher means less")
@@ -23,6 +37,11 @@ public class ModConfig {
     @Config.RangeInt(min = 2, max = 20)
     @Config.RequiresMcRestart
     public static int portal_big_chance = 15;
+
+    @Config.Name("Portal Ruins Overworld Biomes Blacklist")
+    @Config.Comment("This list acts as a black list for Portal Ruins to NOT spawn in")
+    @Config.RequiresMcRestart
+    public static String[] ruinsBiomesNotAllowed = {"minecraft:ice_mountains", "minecraft:frozen_ocean"};
 
     @Config.Name("Portal Ruins NETHER Spawn Rate")
     @Config.Comment("Change the rate that ruined portals in the nether spawn at, lower means more frequent, higher means less")
@@ -59,6 +78,26 @@ public class ModConfig {
     @Config.Comment("Change how long it takes for a Piglin or Hoglin to Zombify when entering the overworld")
     @Config.RequiresMcRestart
     public static int zombification_time = 15;
+
+    @Config.Name("Piglin Trade Delay")
+    @Config.Comment("Change the delay of Piglins when bartering, take not this timer starts once a Piglin accepts a gold ingot. In Seconds")
+    @Config.RequiresMcRestart
+    public static int piglins_trade_cooldown = 7;
+
+    @Config.Name("Enable/Disable Piglin Hostility in Bastions")
+    @Config.Comment("Only affecting Piglins, this option when disabled makes Piglins not aggroed automatically and follows normal rules. However, Piglin Brutes can still allow Piglins to aggro default: true")
+    @Config.RequiresMcRestart
+    public static boolean piglins_are_aggro = true;
+
+    @Config.Name("Enable/Disable Piglins use Spartan Weaponry over Crossbows")
+    @Config.Comment("Affects Piglins only, makes Piglins carry Spartan Weaponry items. THIS REQUIRES SPARTAN WEAPONRY TO BE LOADED default: false")
+    @Config.RequiresMcRestart
+    public static boolean useSpartanWeapons = false;
+
+    @Config.Name("Enable/Disable Piglins melee variant use Spartan Weaponry")
+    @Config.Comment("Affects Piglins only, makes Piglins carry Spartan melee items. THIS REQUIRES SPARTAN WEAPONRY TO BE LOADED default:false")
+    @Config.RequiresMcRestart
+    public static boolean useMeleeSpartanWeapons = false;
 
     @Config.Name("Nether Backport Global Health Modifier")
     @Config.Comment("Modify Health globally of all mobs added in this mod")
@@ -100,4 +139,6 @@ public class ModConfig {
             "minecraft:soul_sand",
             ModReference.MOD_ID + ":soul_soil"
     };
+
+
 }
