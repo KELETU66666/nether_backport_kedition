@@ -79,7 +79,7 @@ public class EventOnSoulSpeed {
                     float speed = (i * 0.105F) + 1.3F;
 
                     if(!entityIn.world.isRemote && attributeIn.getModifier(NBEnchantmentSoulSpeed.SOUL_SPEED_MODIFIER) == null) {
-                        attributeIn.applyModifier(new AttributeModifier(NBEnchantmentSoulSpeed.SOUL_SPEED_MODIFIER, "soul_speed_modifier", speed, 1).setSaved(false));;
+                        attributeIn.applyModifier(new AttributeModifier(NBEnchantmentSoulSpeed.SOUL_SPEED_MODIFIER, "soul_speed_modifier", speed, 1).setSaved(false));
                     }
                 }
             }
