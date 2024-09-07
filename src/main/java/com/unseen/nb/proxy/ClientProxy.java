@@ -70,4 +70,11 @@ public class ClientProxy extends CommonProxy{
                 return new ParticleSoulFlame.Factory();
         }
     }
+
+    @Override
+    public void spawnSoulParticle(IParticleFactory particle, World worldIn, double x, double y, double z, double motX, double motY, double motZ) {
+        if(worldIn == null) worldIn = Minecraft.getMinecraft().world;
+
+        Minecraft.getMinecraft().effectRenderer.addEffect(particle.createParticle(0, worldIn, x, y, z, motX, motY, motZ));
+    }
 }
