@@ -1,15 +1,11 @@
 package com.unseen.nb.util.integration;
 
-
-import com.oblivioussp.spartanweaponry.init.ItemRegistrySW;
 import com.unseen.nb.common.entity.entities.EntityPiglin;
 import com.unseen.nb.config.ModConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-import net.smileycorp.crossbows.common.CrossbowsContent;
-
 
 public class ModIntegration {
 
@@ -25,9 +21,9 @@ public class ModIntegration {
 
     public static ItemStack getCrossBow() {
         if (CROSSBOWS_BACKPORT_LOADED)
-            return new ItemStack(CrossbowsContent.CROSSBOW);
+            return CrossbosBackportIntegration.getCrossbow();
         else if (SPARTAN_WEAPONRY_LOADED)
-            return new ItemStack(ItemRegistrySW.crossbowWood);
+            return SpartanWeaponryIntegration.getCrossBow();
         else
             return new ItemStack(Items.BOW);
     }
