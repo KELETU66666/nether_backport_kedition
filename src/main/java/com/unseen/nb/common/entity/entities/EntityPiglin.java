@@ -7,6 +7,7 @@ import com.unseen.nb.client.animation.IAnimatedEntity;
 import com.unseen.nb.common.entity.EntityNetherBase;
 import com.unseen.nb.common.entity.entities.ai.EntityTimedAttackPiglin;
 import com.unseen.nb.common.entity.entities.ai.IAttack;
+import com.unseen.nb.config.ModCompatConfig;
 import com.unseen.nb.config.ModConfig;
 import com.unseen.nb.init.ModSoundHandler;
 import com.unseen.nb.util.ModRand;
@@ -212,9 +213,34 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                 this.initRangedAI();
             } else {
                 this.setHasMelee(true);
+<<<<<<< Updated upstream
                 if (ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
                     for (ItemStack randStack : ModIntegration.selectPiglinWeapon()) {
                         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, randStack);
+=======
+                if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModCompatConfig.useMeleeSpartanWeapons) {
+                    int randomInterval = ModRand.range(1, 8);
+                    if(randomInterval == 1) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.greatswordGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 2) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.katanaGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 3) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  ItemRegistrySW.rapierGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 4) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.saberGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 5) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  ItemRegistrySW.scytheGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 6) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.spearGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 7) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_SWORD.getDefaultInstance());
+>>>>>>> Stashed changes
                     }
                 } else {
                     this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
@@ -232,10 +258,36 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                 }
                 this.initRangedAI();
 
+<<<<<<< Updated upstream
             } else if (this.isHasMelee()) {
                 if (ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
                     for (ItemStack randStack : ModIntegration.selectPiglinWeapon()) {
                         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, randStack);
+=======
+            } else if(this.isHasMelee()) {
+                if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModCompatConfig.useMeleeSpartanWeapons) {
+                    int randomInterval = ModRand.range(1, 8);
+                    if(randomInterval == 1) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.greatswordGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 2) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.katanaGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 3) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  ItemRegistrySW.rapierGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 4) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.saberGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 5) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  ItemRegistrySW.scytheGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 6) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.spearGold.getDefaultInstance());
+                    }
+                    if(randomInterval == 7) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_SWORD.getDefaultInstance());
+>>>>>>> Stashed changes
                     }
                 } else {
                     this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
@@ -311,7 +363,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     private int dimensionCheck = 40;
     private int countDownToZombie = ModConfig.zombification_time * 20;
 
-    private EntityHoglin foodTarget;
+    private EntityHoglin foodTarget = null;
 
     public boolean convertTooZombie = false;
 
@@ -368,8 +420,20 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
             }
         }
 
+<<<<<<< Updated upstream
         if (dimensionCheck < 0) {
             if (this.world.provider.getDimension() != -1) {
+=======
+        if(foodTarget != null) {
+            if(foodTarget.getHealth() == 0) {
+                this.setAttackTarget(null);
+                foodTarget = null;
+            }
+        }
+
+        if(dimensionCheck < 0) {
+            if(this.world.provider.getDimension() != -1) {
+>>>>>>> Stashed changes
                 //Start Zombification Process
                 if (countDownToZombie < 0 && !this.convertTooZombie) {
                     this.setAttackTarget(null);

@@ -14,6 +14,7 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumHandSide;
+import net.minecraft.util.math.MathHelper;
 
 public class ModelPiglin extends BasicModelEntity {
 	public BasicModelPart Torso;
@@ -260,7 +261,7 @@ public class ModelPiglin extends BasicModelEntity {
 			LArm.rotateAngleX = -1.5F + Head.rotateAngleX;
 			LArm.rotateAngleY = 0.6F + Head.rotateAngleY;
 
-		} else if(!pigling.isMeleeAttack() && !pigling.isRangedAttack() && !pigling.isLoadedACrossBow()) {
+		}else if(!pigling.isMeleeAttack() && !pigling.isRangedAttack() && !pigling.isLoadedACrossBow()) {
 			this.walk(RArm, walkSpeed, walkDegree, true, 0F, 0.1F, limbSwing, limbSwingAmount);
 			this.walk(LArm, walkSpeed, walkDegree, false, 0F, 0.1F, limbSwing, limbSwingAmount);
 		}

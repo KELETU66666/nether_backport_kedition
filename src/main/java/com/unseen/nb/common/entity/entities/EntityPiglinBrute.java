@@ -6,6 +6,7 @@ import com.unseen.nb.client.animation.IAnimatedEntity;
 import com.unseen.nb.common.entity.EntityNetherBase;
 import com.unseen.nb.common.entity.entities.ai.EntityTimedAttackPiglinBrute;
 import com.unseen.nb.common.entity.entities.ai.IAttack;
+import com.unseen.nb.config.ModCompatConfig;
 import com.unseen.nb.config.ModConfig;
 import com.unseen.nb.init.ModSoundHandler;
 import com.unseen.nb.util.ModRand;
@@ -54,9 +55,25 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
 
     public EntityPiglinBrute(World worldIn) {
         super(worldIn);
+<<<<<<< Updated upstream
         if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
             for (ItemStack randStack : ModIntegration.selectBruteWeapon()) {
                 this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, randStack);
+=======
+        if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModCompatConfig.useMeleeSpartanWeapons) {
+            int randomInterval = ModRand.range(1, 5);
+            if(randomInterval == 1) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.hammerGold.getDefaultInstance());
+            }
+            if(randomInterval == 2) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.halberdGold.getDefaultInstance());
+            }
+            if(randomInterval == 3) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemRegistrySW.battleaxeGold.getDefaultInstance());
+            }
+            if(randomInterval == 4) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_AXE.getDefaultInstance());
+>>>>>>> Stashed changes
             }
         } else {
             this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));

@@ -4,10 +4,17 @@ import com.unseen.nb.common.blocks.*;
 import com.unseen.nb.common.blocks.base.*;
 import com.unseen.nb.common.blocks.base.slab.BlockDoubleSlab;
 import com.unseen.nb.common.blocks.base.slab.BlockHalfSlab;
+<<<<<<< Updated upstream
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
+=======
+import com.unseen.nb.common.blocks.base.slab.BlockSlabBase;
+import com.unseen.nb.util.integration.ModIntegration;
+import com.unseen.nb.util.states.EnumNBForestTypes;
+import net.minecraft.block.*;
+>>>>>>> Stashed changes
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,8 +34,8 @@ public class ModBlocks {
     public static final float OBSIDIAN_RESISTANCE = 2000;
     public static final List<Block> BLOCKS = new ArrayList<Block>();
 
-    public static final Block CRIMSON_GRASS = new BlockNetherGrass("crimson_grass", Material.ROCK, 0.4F, 0.4F, NBSoundTypes.NYLIUM).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    public static final Block WARPED_GRASS = new BlockNetherGrass("warped_grass", Material.ROCK, 0.4F, 0.4F, NBSoundTypes.NYLIUM).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static final Block CRIMSON_GRASS = new BlockNetherGrass("crimson_grass", Material.ROCK, 0.4F, 0.4F, NBSoundTypes.NYLIUM, EnumNBForestTypes.CRIMSON).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    public static final Block WARPED_GRASS = new BlockNetherGrass("warped_grass", Material.ROCK, 0.4F, 0.4F, NBSoundTypes.NYLIUM, EnumNBForestTypes.WARPED).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
     public static final Block CRIMSON_HYPHAE = new BlockBase("crimson_hyphae", Material.ROCK, STONE_HARDNESS, STONE_RESISTANCE, NBSoundTypes.HYPHAE).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     public static final Block WARPED_HYPHAE = new BlockBase("warped_hyphae", Material.ROCK, STONE_HARDNESS, STONE_RESISTANCE, NBSoundTypes.HYPHAE).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);

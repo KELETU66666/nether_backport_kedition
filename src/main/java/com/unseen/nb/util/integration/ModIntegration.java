@@ -1,6 +1,7 @@
 package com.unseen.nb.util.integration;
 
 import com.unseen.nb.common.entity.entities.EntityPiglin;
+import com.unseen.nb.config.ModCompatConfig;
 import com.unseen.nb.config.ModConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
@@ -9,11 +10,16 @@ import net.minecraftforge.fml.common.Loader;
 
 public class ModIntegration {
 
-    public static boolean CROSSBOWS_BACKPORT_LOADED = Loader.isModLoaded("crossbows") && !ModConfig.useSpartanWeapons;
+    public static boolean CROSSBOWS_BACKPORT_LOADED = Loader.isModLoaded("crossbows") && !ModCompatConfig.useSpartanWeapons;
     public static boolean NETHER_API_LOADED = Loader.isModLoaded("nether_api");
+<<<<<<< Updated upstream
     public static boolean FUTURE_MC_LOADED = Loader.isModLoaded("futuremc") && ModConfig.futureMCCompat;
     public static boolean SPARTAN_WEAPONRY_LOADED = Loader.isModLoaded("spartanweaponry") && ModConfig.useSpartanWeapons;
 
+=======
+    public static boolean FUTURE_MC_LOADED = Loader.isModLoaded("futuremc") && ModCompatConfig.futureMCCompat;
+    public static boolean SPARTAN_WEAPONRY_LOADED = Loader.isModLoaded("spartanweaponry") && ModCompatConfig.useSpartanWeapons;
+>>>>>>> Stashed changes
     public static void init() {
         if (CROSSBOWS_BACKPORT_LOADED) CrossbosBackportIntegration.init();
         if (SPARTAN_WEAPONRY_LOADED) SpartanWeaponryIntegration.init();

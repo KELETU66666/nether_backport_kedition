@@ -1,9 +1,15 @@
 package com.unseen.nb.util;
 
 import com.google.common.collect.Lists;
+<<<<<<< Updated upstream
+=======
+import com.unseen.nb.common.enchantments.NBEnchantmentSoulSpeed;
+import com.unseen.nb.config.ModBlocksConfig;
+>>>>>>> Stashed changes
 import com.unseen.nb.config.ModConfig;
 import com.unseen.nb.init.ModBlocks;
 import com.unseen.nb.init.ModEnchantments;
+import com.unseen.nb.util.states.EnumNBForestTypes;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -247,7 +253,7 @@ public class ModUtils {
     }
 
     public static boolean getBlocksThatCanBeUsed(Block block) {
-        for (String blockName : ModConfig.blocksForEnchant) {
+        for (String blockName : ModBlocksConfig.blocksForEnchant) {
             if (ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockName)) == block) {
                 return true;
             }
@@ -255,7 +261,39 @@ public class ModUtils {
         return false;
     }
 
+    /*
+     * Grows Nether vegetation, code taken from 1.16 Forge
+     */
+    public static boolean growNetherVegetation(World worldIn, Random rand, BlockPos pos, EnumNBForestTypes forestType ) {
+        Block block = worldIn.getBlockState(pos.down()).getBlock();
+        if(block == forestType.getVegetationBlocks("nylium")) {
+            int i = pos.getY();
+            if(i >= 1 && i + 1 < worldIn.getHeight()) {
+                int j = 0;
 
+                for(int k = 0; k < 9; ++k) {
+                    BlockPos newPos = pos.add(rand.nextInt(3) - rand.nextInt(3), rand.nextInt(1), rand.nextInt(3) - rand.nextInt(3));
+                    IBlockState newState = null;
+                    if(rand.nextInt(23) == 0) {
+                        newState = forestType.getOpposite().getVegetationBlocks("fungus").getDefaultState();
+                    } else if(rand.nextInt(11) == 0) {
+                        newState = forestType.getVegetationBlocks("fungus").getDefaultState();
+                    } else if(rand.nextInt(3) == 0) {
+                        newState = forestType.getVegetationBlocks("roots").getDefaultState();
+                    }
+
+                    if(newState != null) {
+                        if(worldIn.isAirBlock(newPos) && newPos.getY() > 0 && worldIn.getBlockState(newPos.down()).getBlock() == forestType.getVegetationBlocks("nylium")) {
+                            worldIn.setBlockState(newPos, newState);
+                            ++j;
+                        }
+                    }
+                }
+                return j > 0;
+            }
+        }
+        return false;
+    }
 
     public static class CustomBiomeSpawn {
         public String nameIn;
