@@ -2,13 +2,11 @@ package com.unseen.nb.common.blocks;
 
 import com.unseen.nb.common.blocks.base.BlockBase;
 import com.unseen.nb.init.ModBlocks;
-<<<<<<< Updated upstream
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-=======
 import com.unseen.nb.util.ModUtils;
 import com.unseen.nb.util.states.EnumNBForestTypes;
 import net.minecraft.block.*;
@@ -16,10 +14,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
->>>>>>> Stashed changes
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockNetherGrass extends BlockBase implements IGrowable {
@@ -38,8 +36,6 @@ public class BlockNetherGrass extends BlockBase implements IGrowable {
     }
 
     @Override
-<<<<<<< Updated upstream
-=======
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return this.getItemDropped(state, rand, fortune);
@@ -61,7 +57,6 @@ public class BlockNetherGrass extends BlockBase implements IGrowable {
     }
 
     @Override
->>>>>>> Stashed changes
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!worldIn.isRemote)

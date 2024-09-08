@@ -1,11 +1,8 @@
 package com.unseen.nb.util;
 
 import com.google.common.collect.Lists;
-<<<<<<< Updated upstream
-=======
 import com.unseen.nb.common.enchantments.NBEnchantmentSoulSpeed;
 import com.unseen.nb.config.ModBlocksConfig;
->>>>>>> Stashed changes
 import com.unseen.nb.config.ModConfig;
 import com.unseen.nb.init.ModBlocks;
 import com.unseen.nb.init.ModEnchantments;

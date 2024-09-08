@@ -4,13 +4,11 @@ package com.unseen.nb.config;
 import com.unseen.nb.util.ModReference;
 import net.minecraftforge.common.config.Config;
 
-<<<<<<< Updated upstream
-@Config(modid = ModReference.MOD_ID, name = ModReference.NAME)
-=======
+
+
 import java.util.ArrayList;
 
 @Config(modid = ModReference.MOD_ID, name = "Nether Backport/general_config")
->>>>>>> Stashed changes
 public class ModConfig {
     @Config.Name("Bastion Remnants Spawn Frequency")
     @Config.Comment("Change the spacing between Bastion Remnants, lower means more frequent, higher means less")

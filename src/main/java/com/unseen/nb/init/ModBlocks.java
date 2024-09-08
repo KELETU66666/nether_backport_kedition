@@ -4,17 +4,14 @@ import com.unseen.nb.common.blocks.*;
 import com.unseen.nb.common.blocks.base.*;
 import com.unseen.nb.common.blocks.base.slab.BlockDoubleSlab;
 import com.unseen.nb.common.blocks.base.slab.BlockHalfSlab;
-<<<<<<< Updated upstream
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
-=======
 import com.unseen.nb.common.blocks.base.slab.BlockSlabBase;
 import com.unseen.nb.util.integration.ModIntegration;
 import com.unseen.nb.util.states.EnumNBForestTypes;
 import net.minecraft.block.*;
->>>>>>> Stashed changes
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

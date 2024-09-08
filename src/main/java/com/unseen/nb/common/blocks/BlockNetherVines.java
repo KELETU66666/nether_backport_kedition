@@ -185,8 +185,8 @@ public class BlockNetherVines extends Block implements IPlantable, IHasModel {
             if (player.isJumping && player.motionY < 0.2F) {
                 if (player.isSneaking()) {
                     player.motionY = 0.0F;
-                } else {
-                    player.motionY = 0.2F;
+               } else {
+                   player.motionY = 0.2F;
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.unseen.nb.common.entity.entities;
 
+import com.oblivioussp.spartanweaponry.init.ItemRegistrySW;
 import com.unseen.nb.client.animation.EZAnimation;
 import com.unseen.nb.client.animation.EZAnimationHandler;
 import com.unseen.nb.client.animation.IAnimatedEntity;
@@ -44,7 +45,7 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
 
     public static final EZAnimation ANIMATION_ATTACK_MELEE = EZAnimation.create(25);
     protected static final DataParameter<Boolean> MELEE_ATTACK = EntityDataManager.createKey(EntityPiglinBrute.class, DataSerializers.BOOLEAN);
-    protected void setMeleeAttack(boolean value) {this.dataManager.set(MELEE_ATTACK, value);}
+    protected void setMeleeAttack(boolean value) {this.dataManager.set(MELEE_ATTACK, Boolean.valueOf(value));}
     public boolean isMeleeAttack() {return this.dataManager.get(MELEE_ATTACK);}
     private Consumer<EntityLivingBase> prevAttack;
 
@@ -55,11 +56,6 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
 
     public EntityPiglinBrute(World worldIn) {
         super(worldIn);
-<<<<<<< Updated upstream
-        if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
-            for (ItemStack randStack : ModIntegration.selectBruteWeapon()) {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, randStack);
-=======
         if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModCompatConfig.useMeleeSpartanWeapons) {
             int randomInterval = ModRand.range(1, 5);
             if(randomInterval == 1) {
@@ -73,10 +69,9 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
             }
             if(randomInterval == 4) {
                 this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_AXE.getDefaultInstance());
->>>>>>> Stashed changes
             }
         } else {
-            this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));
+            this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, Items.GOLDEN_AXE.getDefaultInstance());
         }
         this.experienceValue = 20;
         this.isImmuneToFire = true;
@@ -85,7 +80,7 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(MELEE_ATTACK, false);
+        this.dataManager.register(MELEE_ATTACK, Boolean.valueOf(false));
     }
 
     @Override
@@ -219,7 +214,7 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
         this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 1, true, false, null));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
         this.targetTasks.addTask(4, new EntityAINearestAttackableTarget<>(this, EntityPigZombie.class, 1, true, false, null));
     }
 
@@ -229,8 +224,8 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
         if(!this.isFightMode()) {
             List<Consumer<EntityLivingBase>> attacks = new ArrayList<>(Arrays.asList(meleeAttack, meleeAttackTwo));
             double[] weights = {
-                    (distance < 3 && distance > 0) ? 1 / distance : 1,
-                    (distance < 3 && distance > 0) ? 1 / distance : 2
+                    (distance < 3) ? 1 / distance : 1,
+                    (distance < 3) ? 1 / distance : 2
             };
             prevAttack = ModRand.choice(attacks, rand, weights).next();
 
