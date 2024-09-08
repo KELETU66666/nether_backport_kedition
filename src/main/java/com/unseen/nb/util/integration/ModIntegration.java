@@ -14,45 +14,51 @@ public class ModIntegration {
     public static boolean NETHER_API_LOADED = Loader.isModLoaded("nether_api");
     public static boolean FUTURE_MC_LOADED = Loader.isModLoaded("futuremc") && ModConfig.futureMCCompat;
     public static boolean SPARTAN_WEAPONRY_LOADED = Loader.isModLoaded("spartanweaponry") && ModConfig.useSpartanWeapons;
+
     public static void init() {
         if (CROSSBOWS_BACKPORT_LOADED) CrossbosBackportIntegration.init();
-        if(SPARTAN_WEAPONRY_LOADED) SpartanWeaponryIntegration.init();
+        if (SPARTAN_WEAPONRY_LOADED) SpartanWeaponryIntegration.init();
     }
 
     public static boolean isCrossbow(ItemStack stack) {
         if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack)) return true;
-        if(SPARTAN_WEAPONRY_LOADED && SpartanWeaponryIntegration.isCrossbow(stack)) return true;
+        if (SPARTAN_WEAPONRY_LOADED && SpartanWeaponryIntegration.isCrossbow(stack)) return true;
         return false;
     }
 
     public static ItemStack[] selectPiglinWeapon() {
-        if(SPARTAN_WEAPONRY_LOADED) SpartanWeaponryIntegration.selectPiglinWeapon();
+        if (SPARTAN_WEAPONRY_LOADED) SpartanWeaponryIntegration.selectPiglinWeapon();
 
         return null;
     }
 
     public static ItemStack[] selectBruteWeapon() {
-        if(SPARTAN_WEAPONRY_LOADED) SpartanWeaponryIntegration.selectPiglinBruteWeapon();
+        if (SPARTAN_WEAPONRY_LOADED) SpartanWeaponryIntegration.selectPiglinBruteWeapon();
 
         return null;
     }
 
     public static void setCharged(ItemStack stack, boolean charged) {
-        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack)) CrossbosBackportIntegration.setCharged(stack, charged);
-        if(SPARTAN_WEAPONRY_LOADED && SpartanWeaponryIntegration.isCrossbow(stack)) SpartanWeaponryIntegration.setCharged(stack, charged);
+        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack))
+            CrossbosBackportIntegration.setCharged(stack, charged);
+        if (SPARTAN_WEAPONRY_LOADED && SpartanWeaponryIntegration.isCrossbow(stack))
+            SpartanWeaponryIntegration.setCharged(stack, charged);
     }
 
     public static void performShooting(EntityPiglin entity, ItemStack stack, float velocity) {
-        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack)) CrossbosBackportIntegration.shoot(entity, stack, velocity);
+        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack))
+            CrossbosBackportIntegration.shoot(entity, stack, velocity);
     }
 
     public static boolean isCharged(ItemStack stack, EntityPiglin entity) {
-        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack)) return entity.getItemInUseCount() < -stack.getMaxItemUseDuration();
+        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack))
+            return entity.getItemInUseCount() < -stack.getMaxItemUseDuration();
         return false;
     }
 
     public static float getChargeAmount(ItemStack stack, EntityLivingBase entity) {
-        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack)) return CrossbosBackportIntegration.getChargeAmount(stack, entity);
+        if (CROSSBOWS_BACKPORT_LOADED && CrossbosBackportIntegration.isCrossbow(stack))
+            return CrossbosBackportIntegration.getChargeAmount(stack, entity);
         return (float) -entity.getItemInUseCount() / (float) stack.getMaxItemUseDuration();
     }
 

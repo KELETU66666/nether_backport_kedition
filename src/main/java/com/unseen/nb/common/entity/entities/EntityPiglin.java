@@ -57,6 +57,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     public static final EZAnimation ANIMATION_SHORT_TRADE = EZAnimation.create(120);
     public static final EZAnimation ANIMATION_LONG_TRADE = EZAnimation.create(40);
 
+
     private static final ResourceLocation LOOT_TRADE = new ResourceLocation(ModReference.MOD_ID, "piglin_trade");
 
     protected static final DataParameter<Boolean> MELEE_ATTACK = EntityDataManager.createKey(EntityPiglin.class, DataSerializers.BOOLEAN);
@@ -71,32 +72,97 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     protected static final DataParameter<Boolean> HASBOOTS = EntityDataManager.createKey(EntityPiglin.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> RAND_ARMOR = EntityDataManager.createKey(EntityPiglin.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> LOADED_CROSSBOW = EntityDataManager.createKey(EntityPiglin.class, DataSerializers.BOOLEAN);
-    public boolean isMeleeAttack() {return this.dataManager.get(MELEE_ATTACK);}
-    public boolean isRangedAttack() {return this.dataManager.get(RANGED_ATTACK);}
-    protected boolean isShortTrade() {return this.dataManager.get(SHORT_TRADE);}
-    protected boolean isLongTrade() {return this.dataManager.get(LONG_TRADE);}
-    public boolean isHasRanged() {return this.dataManager.get(HAS_RANGED);}
-    public boolean isHasMelee() {return this.dataManager.get(HAS_MELEE);}
-    public boolean isHasHelmet() {return this.dataManager.get(HASHELMET);}
-    public boolean isHasChestPlate() {return this.dataManager.get(HASCHEST);}
-    public boolean isHasBoots() {return this.dataManager.get(HASBOOTS);}
-    public boolean isRandArmor() {return this.dataManager.get(RAND_ARMOR);}
-    public boolean isLoadedACrossBow() {return this.dataManager.get(LOADED_CROSSBOW);}
-    protected void setMeleeAttack(boolean value) {this.dataManager.set(MELEE_ATTACK, value);}
-    protected void setRangedAttack(boolean value) {this.dataManager.set(RANGED_ATTACK, value);}
-    protected void setShortTrade(boolean value) {this.dataManager.set(SHORT_TRADE, value);}
-    protected void setLongTrade(boolean value) {this.dataManager.set(LONG_TRADE, value);}
-    protected void setHasRanged(boolean value) {this.dataManager.set(HAS_RANGED, value);}
-    protected void setHasMelee(boolean value) {this.dataManager.set(HAS_MELEE, value);}
-    protected void setHasHelmet(boolean value) {this.dataManager.set(HASHELMET, value);}
-    protected void setHasChest(boolean value) {this.dataManager.set(HASCHEST, value);}
-    protected void setHasBoots(boolean value) {this.dataManager.set(HASBOOTS, value);}
-    protected void setRandArmor(boolean value) {this.dataManager.set(RAND_ARMOR, value);}
-    protected void setLoadedACrossBow(boolean value) {this.dataManager.set(LOADED_CROSSBOW, value);}
+
+    public boolean isMeleeAttack() {
+        return this.dataManager.get(MELEE_ATTACK);
+    }
+
+    public boolean isRangedAttack() {
+        return this.dataManager.get(RANGED_ATTACK);
+    }
+
+    protected boolean isShortTrade() {
+        return this.dataManager.get(SHORT_TRADE);
+    }
+
+    protected boolean isLongTrade() {
+        return this.dataManager.get(LONG_TRADE);
+    }
+
+    public boolean isHasRanged() {
+        return this.dataManager.get(HAS_RANGED);
+    }
+
+    public boolean isHasMelee() {
+        return this.dataManager.get(HAS_MELEE);
+    }
+
+    public boolean isHasHelmet() {
+        return this.dataManager.get(HASHELMET);
+    }
+
+    public boolean isHasChestPlate() {
+        return this.dataManager.get(HASCHEST);
+    }
+
+    public boolean isHasBoots() {
+        return this.dataManager.get(HASBOOTS);
+    }
+
+    public boolean isRandArmor() {
+        return this.dataManager.get(RAND_ARMOR);
+    }
+
+    public boolean isLoadedACrossBow() {
+        return this.dataManager.get(LOADED_CROSSBOW);
+    }
+
+    protected void setMeleeAttack(boolean value) {
+        this.dataManager.set(MELEE_ATTACK, value);
+    }
+
+    protected void setRangedAttack(boolean value) {
+        this.dataManager.set(RANGED_ATTACK, value);
+    }
+
+    protected void setShortTrade(boolean value) {
+        this.dataManager.set(SHORT_TRADE, value);
+    }
+
+    protected void setLongTrade(boolean value) {
+        this.dataManager.set(LONG_TRADE, value);
+    }
+
+    protected void setHasRanged(boolean value) {
+        this.dataManager.set(HAS_RANGED, value);
+    }
+
+    protected void setHasMelee(boolean value) {
+        this.dataManager.set(HAS_MELEE, value);
+    }
+
+    protected void setHasHelmet(boolean value) {
+        this.dataManager.set(HASHELMET, value);
+    }
+
+    protected void setHasChest(boolean value) {
+        this.dataManager.set(HASCHEST, value);
+    }
+
+    protected void setHasBoots(boolean value) {
+        this.dataManager.set(HASBOOTS, value);
+    }
+
+    protected void setRandArmor(boolean value) {
+        this.dataManager.set(RAND_ARMOR, value);
+    }
+
+    protected void setLoadedACrossBow(boolean value) {
+        this.dataManager.set(LOADED_CROSSBOW, value);
+    }
 
 
     private Consumer<EntityLivingBase> prevAttack;
-
 
 
     private int randomChestStat = ModRand.range(1, 10);
@@ -111,6 +177,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     //just a variable that holds what the current animation is
     private EZAnimation currentAnimation;
 
+
     public EntityPiglin(World worldIn) {
         super(worldIn);
         this.setSize(0.6F, 1.95F);
@@ -118,7 +185,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
         this.isImmuneToFire = true;
 
 
-        if(!this.isRandArmor()) {
+        if (!this.isRandArmor()) {
             if (randomChestStat == 3 && !this.isHasChestPlate()) {
                 this.setHasChest(true);
             }
@@ -131,40 +198,41 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
             this.setRandArmor(true);
         }
 
-        if(!this.isHasMelee() && !this.isHasRanged()) {
-            if(worldIn.rand.nextInt(2) == 0) {
+        if (!this.isHasMelee() && !this.isHasRanged()) {
+            if (worldIn.rand.nextInt(2) == 0) {
                 this.setHasRanged(true);
-                if(ModIntegration.CROSSBOWS_BACKPORT_LOADED) {
+                if (ModIntegration.CROSSBOWS_BACKPORT_LOADED) {
+
                     this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(CrossbowsContent.CROSSBOW));
                 } else if (ModIntegration.SPARTAN_WEAPONRY_LOADED) {
                     this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.crossbowWood));
                 } else {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
                 }
                 this.initRangedAI();
             } else {
                 this.setHasMelee(true);
-                if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
+                if (ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
                     int randomInterval = ModRand.range(1, 8);
-                    if(randomInterval == 1) {
+                    if (randomInterval == 1) {
                         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.greatswordGold));
                     }
-                    if(randomInterval == 2) {
+                    if (randomInterval == 2) {
                         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.katanaGold));
                     }
-                    if(randomInterval == 3) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.rapierGold));
+                    if (randomInterval == 3) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.rapierGold));
                     }
-                    if(randomInterval == 4) {
+                    if (randomInterval == 4) {
                         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.saberGold));
                     }
-                    if(randomInterval == 5) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.scytheGold));
+                    if (randomInterval == 5) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.scytheGold));
                     }
-                    if(randomInterval == 6) {
+                    if (randomInterval == 6) {
                         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.spearGold));
                     }
-                    if(randomInterval == 7) {
+                    if (randomInterval == 7) {
                         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
                     }
                 } else {
@@ -173,15 +241,43 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                 this.initMeleeAI();
             }
         } else {
-            if(this.isHasRanged()) {
-                if(ModIntegration.CROSSBOWS_BACKPORT_LOADED) {
+            if (this.isHasRanged()) {
+                if (ModIntegration.CROSSBOWS_BACKPORT_LOADED) {
                     this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(CrossbowsContent.CROSSBOW));
+                } else if (ModIntegration.SPARTAN_WEAPONRY_LOADED) {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.crossbowWood));
                 } else {
                     this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
                 }
                 this.initRangedAI();
-            } else if(this.isHasMelee()) {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+
+            } else if (this.isHasMelee()) {
+                if (ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
+                    int randomInterval = ModRand.range(1, 8);
+                    if (randomInterval == 1) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.greatswordGold));
+                    }
+                    if (randomInterval == 2) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.katanaGold));
+                    }
+                    if (randomInterval == 3) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.rapierGold));
+                    }
+                    if (randomInterval == 4) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.saberGold));
+                    }
+                    if (randomInterval == 5) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.scytheGold));
+                    }
+                    if (randomInterval == 6) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.spearGold));
+                    }
+                    if (randomInterval == 7) {
+                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+                    }
+                } else {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+                }
                 this.initMeleeAI();
             }
         }
@@ -195,11 +291,12 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     protected void initMeleeAI() {
         this.tasks.addTask(2, new EntityTimedAttackPiglin<>(this, 1.8D, 60, 3, 0.2F));
     }
+
     @Override
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(MELEE_ATTACK, false);
-        this.dataManager.register(RANGED_ATTACK, false);
+        this.dataManager.register(RANGED_ATTACK, Boolean.FALSE);
         this.dataManager.register(SHORT_TRADE, false);
         this.dataManager.register(LONG_TRADE, false);
         this.dataManager.register(HAS_MELEE, false);
@@ -265,22 +362,22 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     public void onUpdate() {
         super.onUpdate();
 
-        if(this.isFightMode() && this.getAnimation() == NO_ANIMATION) {
-            if(this.isMeleeAttack()) {
+        if (this.isFightMode() && this.getAnimation() == NO_ANIMATION) {
+            if (this.isMeleeAttack()) {
                 this.setAnimation(ANIMATION_ATTACK_MELEE);
             }
-            if(this.isRangedAttack()) {
+            if (this.isRangedAttack()) {
                 this.setAnimation(ANIMATION_ATTACK_RANGED);
             }
 
-            if(this.isShortTrade()) {
+            if (this.isShortTrade()) {
                 this.setAnimation(ANIMATION_SHORT_TRADE);
             }
         }
 
         EntityLivingBase target = this.getAttackTarget();
 
-        if(target != null && !hasPlayedAngrySound) {
+        if (target != null && !hasPlayedAngrySound) {
             this.playSound(ModSoundHandler.PIGLIN_ANGRY, 1.0f, 1.0f / (rand.nextFloat() * 0.4f + 0.5f));
             hasPlayedAngrySound = true;
         } else if (target == null) {
@@ -288,17 +385,17 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
         }
 
 
-        if(!world.isRemote && world.rand.nextInt(12) == 0 && !this.isInsideBastion()) {
-            if(this.isHungryTimer < 0) {
+        if (!world.isRemote && world.rand.nextInt(12) == 0 && !this.isInsideBastion()) {
+            if (this.isHungryTimer < 0) {
                 List<EntityHoglin> nearbyHoglins = this.world.getEntitiesWithinAABB(EntityHoglin.class, this.getEntityBoundingBox().grow(16D), e -> !e.getIsInvulnerable());
-                if(!nearbyHoglins.isEmpty() && target == null && foodTarget == null) {
-                    for(EntityHoglin hoglin : nearbyHoglins) {
+                if (!nearbyHoglins.isEmpty() && target == null && foodTarget == null) {
+                    for (EntityHoglin hoglin : nearbyHoglins) {
                         this.createTargetFor(hoglin);
                         foodTarget = hoglin;
                         this.isHungryTimer = 60;
                         List<EntityPiglin> nearbyPiglins = this.world.getEntitiesWithinAABB(EntityPiglin.class, this.getEntityBoundingBox().grow(10D), e -> !e.getIsInvulnerable());
-                        if(!nearbyPiglins.isEmpty()) {
-                            for(EntityPiglin piglin : nearbyPiglins) {
+                        if (!nearbyPiglins.isEmpty()) {
+                            for (EntityPiglin piglin : nearbyPiglins) {
                                 piglin.setAttackTarget(hoglin);
                             }
                         }
@@ -309,10 +406,10 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
             }
         }
 
-        if(dimensionCheck < 0) {
-            if(this.world.provider.getDimension() != -1) {
+        if (dimensionCheck < 0) {
+            if (this.world.provider.getDimension() != -1) {
                 //Start Zombification Process
-                if(countDownToZombie < 0 && !this.convertTooZombie) {
+                if (countDownToZombie < 0 && !this.convertTooZombie) {
                     this.setAttackTarget(null);
                     this.setImmovable(true);
                     this.convertTooZombie = true;
@@ -326,54 +423,22 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
         } else {
             dimensionCheck--;
         }
-        if(this.canTrade && !this.isInsideBastion()) {
-            if(trade_delay < 0) {
+        if (this.canTrade && !this.isInsideBastion()) {
+            if (trade_delay < 0) {
                 List<EntityItem> nearbyItems = this.world.getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().grow(5D), e -> !e.getIsInvulnerable());
-                if(!nearbyItems.isEmpty()) {
-                    for(EntityItem item: nearbyItems) {
+                if (!nearbyItems.isEmpty()) {
+                    for (EntityItem item : nearbyItems) {
                         ItemStack itemStack = item.getItem();
-                        if(itemStack.getItem() == Items.GOLD_INGOT && !foundGoldIngot) {
-                        double distSq = this.getDistanceSq(item.posX, item.getEntityBoundingBox().minY, item.posZ);
-                        this.getNavigator().tryMoveToEntityLiving(item, 1.2D);
-                        if(distSq < 2) {
-                            item.getItem().shrink(1);
-                            this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.GOLD_INGOT));
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(CrossbowsContent.CROSSBOW));
-                }  else if (ModIntegration.SPARTAN_WEAPONRY_LOADED) {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.crossbowWood));
-                }else {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-
-                if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
-                    int randomInterval = ModRand.range(1, 8);
-                    if(randomInterval == 1) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.greatswordGold));
-                    }
-                    if(randomInterval == 2) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.katanaGold));
-                    }
-                    if(randomInterval == 3) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.rapierGold));
-                    }
-                    if(randomInterval == 4) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.saberGold));
-                    }
-                    if(randomInterval == 5) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND,  new ItemStack(ItemRegistrySW.scytheGold));
-                    }
-                    if(randomInterval == 6) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.spearGold));
-                    }
-                    if(randomInterval == 7) {
-                        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
-                    }
-                } else {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
-                }
-                            foundGoldIngot = true;
-                            this.doTrade();
-                            trade_delay = ModConfig.piglins_trade_cooldown;
-                        }
+                        if (itemStack.getItem() == Items.GOLD_INGOT && !foundGoldIngot) {
+                            double distSq = this.getDistanceSq(item.posX, item.getEntityBoundingBox().minY, item.posZ);
+                            this.getNavigator().tryMoveToEntityLiving(item, 1.2D);
+                            if (distSq < 2) {
+                                item.getItem().shrink(1);
+                                this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.GOLD_INGOT));
+                                foundGoldIngot = true;
+                                this.doTrade();
+                                trade_delay = ModConfig.piglins_trade_cooldown;
+                            }
 
                         } else {
                             trade_delay = 30;
@@ -390,35 +455,35 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
         }
         //Check For Players With Gold Armor nearby
         List<EntityPlayer> nearbyEntities = this.world.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().grow(14D), e -> !e.getIsInvulnerable());
-        if(!nearbyEntities.isEmpty() && !this.isInsideBastion()) {
-            for(EntityPlayer player : nearbyEntities) {
-                if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() != Items.GOLDEN_HELMET && player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.GOLDEN_CHESTPLATE &&
+        if (!nearbyEntities.isEmpty() && !this.isInsideBastion()) {
+            for (EntityPlayer player : nearbyEntities) {
+                if (player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() != Items.GOLDEN_HELMET && player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.GOLDEN_CHESTPLATE &&
                         player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() != Items.GOLDEN_LEGGINGS && player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() != Items.GOLDEN_BOOTS) {
-                    if(this.getAttackTarget() != player) {
-                        if(!player.isSpectator() && !player.isCreative() && this.getAttackTarget() == null) {
+                    if (this.getAttackTarget() != player) {
+                        if (!player.isSpectator() && !player.isCreative() && this.getAttackTarget() == null) {
                             canTrade = false;
                             this.createTargetFor(player);
                             this.setAttackTarget(player);
                         }
                     }
                 } else {
-                    if(this.getAttackTarget() == player && !this.isInsideBastion()) {
-                        if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == Items.GOLDEN_HELMET || player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.GOLDEN_CHESTPLATE ||
+                    if (this.getAttackTarget() == player && !this.isInsideBastion()) {
+                        if (player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == Items.GOLDEN_HELMET || player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.GOLDEN_CHESTPLATE ||
                                 player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == Items.GOLDEN_LEGGINGS || player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() == Items.GOLDEN_BOOTS) {
                             this.setAttackTarget(null);
                         }
                     }
-                    if(this.getAttackTarget() == null && !this.isInsideBastion()) {
+                    if (this.getAttackTarget() == null && !this.isInsideBastion()) {
                         canTrade = true;
                     }
 
                 }
             }
         }
-        if(!ModConfig.piglins_are_aggro && !initiateBastionAI) {
+        if (!ModConfig.piglins_are_aggro && !initiateBastionAI) {
             this.setInsideBastion(false);
             this.initiateBastionAI = true;
-        } else if(this.isInsideBastion() && !initiateBastionAI) {
+        } else if (this.isInsideBastion() && !initiateBastionAI) {
             this.addBastionChanges();
         }
 
@@ -429,17 +494,16 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
 
-        if(source.getImmediateSource() == this || source.getImmediateSource() instanceof EntityPiglinBrute) {
+        if (source.getImmediateSource() == this || source.getImmediateSource() instanceof EntityPiglinBrute) {
             return false;
         }
 
-            return super.attackEntityFrom(source, amount);
+        return super.attackEntityFrom(source, amount);
     }
 
 
-
     private void beginZombieTransformation() {
-        if(!world.isRemote) {
+        if (!world.isRemote) {
             addEvent(() -> this.playSound(ModSoundHandler.PIGLIN_CONVERTED, 1.0f, 1.0f), 75);
             addEvent(() -> {
                 EntityPiglinZombie zombie = new EntityPiglinZombie(world);
@@ -452,17 +516,18 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
             }, 100);
         }
     }
+
     protected void doTrade() {
         this.setFightMode(true);
         this.setShortTrade(true);
         this.playSound(ModSoundHandler.PIGLIN_ADMIRE, 1.0f, 1.0f / (rand.nextFloat() * 0.4f + 0.5f));
 
         addEvent(this::getPiglinLootTable, 110);
-        addEvent(()-> {
+        addEvent(() -> {
             this.playSound(ModSoundHandler.PIGLIN_IDLE, 1.0f, 1.0f / (rand.nextFloat() * 0.4f + 0.5f));
         }, 110);
 
-        addEvent(()-> {
+        addEvent(() -> {
             this.setFightMode(false);
             this.setShortTrade(false);
             this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY);
@@ -470,6 +535,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
             this.foundGoldIngot = false;
         }, 120);
     }
+
     protected void createTargetFor(EntityLivingBase player) {
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, player.getClass(), 1, true, false, null));
     }
@@ -482,7 +548,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
 
     @Override
     protected boolean canDespawn() {
-        if(this.isInsideBastion()) {
+        if (this.isInsideBastion()) {
             return false;
         }
         // Edit this to restricting them not despawning in Dungeons
@@ -491,10 +557,11 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     }
 
     private List<ItemStack> trade_items = Lists.newArrayList();
+
     protected void getPiglinLootTable() {
-        if(!world.isRemote) {
+        if (!world.isRemote) {
             LootContext.Builder lootcontext$builder = (new LootContext.Builder((WorldServer) this.world)).withLootedEntity(this);
-            trade_items = this.world.getLootTableManager().getLootTableFromLocation(LOOT_TRADE).generateLootForPools(this.lootTableTradeSeed == 0 ? new Random() :new Random(this.lootTableTradeSeed), lootcontext$builder.build());
+            trade_items = this.world.getLootTableManager().getLootTableFromLocation(LOOT_TRADE).generateLootForPools(this.lootTableTradeSeed == 0 ? new Random() : new Random(this.lootTableTradeSeed), lootcontext$builder.build());
             for (ItemStack item : trade_items) {
                 this.entityDropItem(item, 1.5F);
                 //this.world.getLootTableManager().reloadLootTables();
@@ -525,29 +592,28 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
     }
 
 
-
     @Override
     public int startAttack(EntityLivingBase target, float distanceSq, boolean strafingBackwards) {
-        if(!this.isFightMode() && this.getAnimation() == NO_ANIMATION) {
+        if (!this.isFightMode() && this.getAnimation() == NO_ANIMATION) {
             double distance = Math.sqrt(distanceSq);
-            if(this.isHasRanged()) {
-                if(!this.isLoadedACrossBow()) {
+            if (this.isHasRanged()) {
+                if (!this.isLoadedACrossBow()) {
                     this.setFightMode(true);
                     this.setRangedAttack(true);
                     this.setImmovable(true);
                     this.setActiveHand(EnumHand.MAIN_HAND);
 
-                    addEvent(()-> {
+                    addEvent(() -> {
                         ItemStack stack = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
                         //loads Crossbow
                         this.setLoadedACrossBow(true);
                         stack.onPlayerStoppedUsing(world, this, 0);
-                        if(ModIntegration.isCrossbow(stack)) {
+                        if (ModIntegration.isCrossbow(stack)) {
                             ModIntegration.setCharged(stack, true);
 
                         }
                     }, 15);
-                    addEvent(()-> {
+                    addEvent(() -> {
                         this.setFightMode(false);
                         this.setImmovable(false);
                         this.setRangedAttack(false);
@@ -557,24 +623,24 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                     //Shoots Crossbow
                     this.setFightMode(true);
 
-                    addEvent(()-> {
-                        EntityArrow arrow =new EntityTippedArrow(world, this);
+                    addEvent(() -> {
+                        EntityArrow arrow = new EntityTippedArrow(world, this);
                         double d0 = target.posX - posX;
-                        double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3f) - arrow.posY;
+                        double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3f) - arrow.posY;
                         double d2 = target.posZ - posZ;
                         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-                        arrow.shoot(d0, d1 + d3 * 0.20000000298023224, d2, 1.6f, (float)(14 - world.getDifficulty().getId() * 4));
+                        arrow.shoot(d0, d1 + d3 * 0.20000000298023224, d2, 1.6f, (float) (14 - world.getDifficulty().getId() * 4));
                         playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1, 1f / (this.getRNG().nextFloat() * 0.4f + 0.8f));
                         arrow.setDamage(11D * ModConfig.attackDamageScale);
                         world.spawnEntity(arrow);
                         //Unloads the crossbow
                         ItemStack stack = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
                         this.resetActiveHand();
-                        if(ModIntegration.isCrossbow(stack)) {
+                        if (ModIntegration.isCrossbow(stack)) {
                             ModIntegration.setCharged(stack, false);
                         }
                     }, 5);
-                    addEvent(()-> {
+                    addEvent(() -> {
                         this.setFightMode(false);
                         this.setLoadedACrossBow(false);
                         this.setAnimation(NO_ANIMATION);
@@ -582,11 +648,11 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
                 }
 
             }
-            if(this.isHasMelee()) {
+            if (this.isHasMelee()) {
                 List<Consumer<EntityLivingBase>> attacks = new ArrayList<>(Arrays.asList(meleeAttack, meleeAttackTwo));
                 double[] weights = {
-                        (distance <= 3) ? 1/distance : 1,
-                        (distance <= 3) ? 1/distance : 2
+                        (distance <= 3) ? 1 / distance : 1,
+                        (distance <= 3) ? 1 / distance : 2
                 };
                 prevAttack = ModRand.choice(attacks, rand, weights).next();
 
@@ -600,79 +666,79 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
         this.setFightMode(true);
         this.setMeleeAttack(true);
 
-        addEvent(()-> {
+        addEvent(() -> {
             Vec3d offset = this.getPositionVector().add(ModUtils.getRelativeOffset(this, new Vec3d(1.2, 1.2, 0)));
             DamageSource source = DamageSource.causeMobDamage(this);
-            float damage = (float)(8.0F * ModConfig.attackDamageScale);
-            ModUtils.handleAreaImpact(1.0f, (e)-> damage, this, offset, source, 0.5f, 0, false);
+            float damage = (float) (8.0F * ModConfig.attackDamageScale);
+            ModUtils.handleAreaImpact(1.0f, (e) -> damage, this, offset, source, 0.5f, 0, false);
         }, 18);
 
-        addEvent(()-> {
-            this.setMeleeAttack( false);
+        addEvent(() -> {
+            this.setMeleeAttack(false);
             this.setFightMode(false);
             this.setAnimation(NO_ANIMATION);
         }, 25);
     };
 
     private final Consumer<EntityLivingBase> meleeAttack = (target) -> {
-    this.setFightMode(true);
-    this.setMeleeAttack(true);
+        this.setFightMode(true);
+        this.setMeleeAttack(true);
 
-    addEvent(()-> {
-        Vec3d offset = this.getPositionVector().add(ModUtils.getRelativeOffset(this, new Vec3d(1.2, 1.2, 0)));
-        DamageSource source = DamageSource.causeMobDamage(this);
-        float damage = (float) (8.0F * ModConfig.attackDamageScale);
-        ModUtils.handleAreaImpact(1.0f, (e)-> damage, this, offset, source, 0.5f, 0, false);
-    }, 18);
+        addEvent(() -> {
+            Vec3d offset = this.getPositionVector().add(ModUtils.getRelativeOffset(this, new Vec3d(1.2, 1.2, 0)));
+            DamageSource source = DamageSource.causeMobDamage(this);
+            float damage = (float) (8.0F * ModConfig.attackDamageScale);
+            ModUtils.handleAreaImpact(1.0f, (e) -> damage, this, offset, source, 0.5f, 0, false);
+        }, 18);
 
-    addEvent(()-> {
-        this.setMeleeAttack( false);
-        this.setFightMode(false);
-        this.setAnimation(NO_ANIMATION);
-    }, 25);
+        addEvent(() -> {
+            this.setMeleeAttack(false);
+            this.setFightMode(false);
+            this.setAnimation(NO_ANIMATION);
+        }, 25);
     };
 
     private final Consumer<EntityLivingBase> load_crossbow = (target) -> {
-    this.setFightMode(true);
-    this.setRangedAttack(true);
-    this.setImmovable(true);
+        this.setFightMode(true);
+        this.setRangedAttack(true);
+        this.setImmovable(true);
 
-    addEvent(()-> {
-        ItemStack stack = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
-        //loads Crossbow
-        this.setLoadedACrossBow(true);
-    if(ModIntegration.isCrossbow(stack)) {
-        ModIntegration.setCharged(stack, true);
-    }
-    }, 15);
-    addEvent(()-> {
-        this.setFightMode(false);
-        this.setImmovable(false);
-        this.setRangedAttack(false);
-        this.setAnimation(NO_ANIMATION);
-    }, 25);
+        addEvent(() -> {
+            ItemStack stack = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+            //loads Crossbow
+            this.setLoadedACrossBow(true);
+            if (ModIntegration.isCrossbow(stack)) {
+                ModIntegration.setCharged(stack, true);
+            }
+        }, 15);
+        addEvent(() -> {
+            this.setFightMode(false);
+            this.setImmovable(false);
+            this.setRangedAttack(false);
+            this.setAnimation(NO_ANIMATION);
+        }, 25);
     };
 
     private final Consumer<EntityLivingBase> shoot_crossbow = (target) -> {
         this.setFightMode(true);
 
-        addEvent(()-> {
-            EntityArrow arrow =new EntityTippedArrow(world, this);
+        addEvent(() -> {
+            EntityArrow arrow = new EntityTippedArrow(world, this);
             double d0 = target.posX - posX;
-            double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3f) - arrow.posY;
+            double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3f) - arrow.posY;
             double d2 = target.posZ - posZ;
             double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-            arrow.shoot(d0, d1 + d3 * 0.20000000298023224, d2, 1.6f, (float)(14 - world.getDifficulty().getId() * 4));
+            arrow.shoot(d0, d1 + d3 * 0.20000000298023224, d2, 1.6f, (float) (14 - world.getDifficulty().getId() * 4));
             playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1, 1f / (this.getRNG().nextFloat() * 0.4f + 0.8f));
             arrow.setDamage(11D);
             world.spawnEntity(arrow);
             //Unloads the crossbow
             ItemStack stack = getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
-            if(ModIntegration.isCrossbow(stack)) {
+            if (ModIntegration.isCrossbow(stack)) {
                 ModIntegration.setCharged(stack, false);
             }
         }, 5);
-        addEvent(()-> {
+        addEvent(() -> {
             this.setFightMode(false);
             this.setLoadedACrossBow(false);
             this.setAnimation(NO_ANIMATION);
@@ -688,8 +754,7 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
 
 
     @Override
-    public boolean canPickUpLoot()
-    {
+    public boolean canPickUpLoot() {
         return true;
     }
 
@@ -715,10 +780,11 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
 
     @Override
     public EZAnimation[] getAnimations() {
-     return new EZAnimation[]{ANIMATION_ATTACK_MELEE, ANIMATION_ATTACK_RANGED, ANIMATION_SHORT_TRADE, ANIMATION_LONG_TRADE};
+        return new EZAnimation[]{ANIMATION_ATTACK_MELEE, ANIMATION_ATTACK_RANGED, ANIMATION_SHORT_TRADE, ANIMATION_LONG_TRADE};
     }
 
     private static final ResourceLocation LOOT = new ResourceLocation(ModReference.MOD_ID, "piglin");
+
     @Override
     protected ResourceLocation getLootTable() {
         return null;
@@ -731,12 +797,11 @@ public class EntityPiglin extends EntityNetherBase implements IAnimatedEntity, I
 
     @Override
     protected SoundEvent getAmbientSound() {
-            return ModSoundHandler.PIGLIN_IDLE;
+        return ModSoundHandler.PIGLIN_IDLE;
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, Block blockIn)
-    {
+    protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(ModSoundHandler.PIGLIN_STEP, 0.5F, 1.0f / (rand.nextFloat() * 0.4F + 0.2f));
     }
 
