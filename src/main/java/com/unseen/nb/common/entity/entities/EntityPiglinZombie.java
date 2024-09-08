@@ -202,8 +202,8 @@ public class EntityPiglinZombie extends EntityNetherBase implements IAnimatedEnt
         if(!this.isFightMode()) {
             List<Consumer<EntityLivingBase>> attacks = new ArrayList<>(Arrays.asList(meleeAttack, meleeAttackTwo));
             double[] weights = {
-                    (distance < 3) ? 1 / distance : 1,
-                    (distance < 3) ? 1 / distance : 2
+                    (distance < 3 && distance > 0) ? 1 / distance : 1,
+                    (distance < 3 && distance > 0) ? 1 / distance : 2
             };
             prevAttack = ModRand.choice(attacks, rand, weights).next();
 
