@@ -1,6 +1,5 @@
 package com.unseen.nb.common.entity.entities;
 
-import com.oblivioussp.spartanweaponry.init.ItemRegistrySW;
 import com.unseen.nb.client.animation.EZAnimation;
 import com.unseen.nb.client.animation.EZAnimationHandler;
 import com.unseen.nb.client.animation.IAnimatedEntity;
@@ -56,18 +55,8 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
     public EntityPiglinBrute(World worldIn) {
         super(worldIn);
         if(ModIntegration.SPARTAN_WEAPONRY_LOADED && ModConfig.useMeleeSpartanWeapons) {
-            int randomInterval = ModRand.range(1, 5);
-            if(randomInterval == 1) {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.hammerGold));
-            }
-            if(randomInterval == 2) {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.halberdGold));
-            }
-            if(randomInterval == 3) {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemRegistrySW.battleaxeGold));
-            }
-            if(randomInterval == 4) {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));
+            for (ItemStack randStack : ModIntegration.selectBruteWeapon()) {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, randStack);
             }
         } else {
             this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_AXE));
@@ -213,7 +202,7 @@ public class EntityPiglinBrute extends EntityNetherBase implements IAnimatedEnti
         this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 1, true, false, null));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(4, new EntityAINearestAttackableTarget<>(this, EntityPigZombie.class, 1, true, false, null));
     }
 
