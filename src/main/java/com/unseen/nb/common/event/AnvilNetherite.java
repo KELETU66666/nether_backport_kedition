@@ -17,6 +17,14 @@ import net.minecraftforge.oredict.OreDictionary;
 @Mod.EventBusSubscriber(modid = ModReference.MOD_ID)
 public class AnvilNetherite {
 
+    public static boolean isOreMatching(ItemStack stack, String target) {
+            for (ItemStack ore : OreDictionary.getOres(target, false)) {
+                if (ItemStack.areItemsEqual(ore, stack)) {
+                    return true;
+                }
+            }
+        return false;
+    }
 
     @SubscribeEvent
     public static void addNetheriteAnvilRecipes(AnvilUpdateEvent event) {
@@ -25,7 +33,7 @@ public class AnvilNetherite {
         ItemStack rightInput = event.getRight();
         ItemStack output = event.getOutput();
 
-        if (OreDictionary.getOres("ingotNetherite").contains(rightInput)) {
+        if (isOreMatching(rightInput, "ingotNetherite")) {
             if (!ModIntegration.FUTURE_MC_LOADED) {
                 Item[] diamondTools = new Item[]{Items.DIAMOND_SWORD, Items.DIAMOND_SHOVEL, Items.DIAMOND_PICKAXE, Items.DIAMOND_AXE, Items.DIAMOND_HOE, Items.DIAMOND_HELMET, Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_BOOTS, Items.DIAMOND_HORSE_ARMOR};
 
