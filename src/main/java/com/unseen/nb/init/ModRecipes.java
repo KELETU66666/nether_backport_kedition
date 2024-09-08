@@ -27,6 +27,9 @@ public class ModRecipes {
                 OreDictionary.registerOre("trapDoor", ModBlocks.CRIMSON_TRAPDOOR);
                 OreDictionary.registerOre("trapDoor", ModBlocks.WARPED_TRAPDOOR);
                 OreDictionary.registerOre("trapDoor", Blocks.TRAPDOOR);
+                //Material
+                OreDictionary.registerOre("ingotNetherite", ModItemsCompat.NETHERITE_INGOT);
+                OreDictionary.registerOre("blockNetherite", ModBlocksCompat.NETHERITE_BLOCK);
         }
 
 }
