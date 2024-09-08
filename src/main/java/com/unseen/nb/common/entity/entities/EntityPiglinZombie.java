@@ -188,7 +188,7 @@ public class EntityPiglinZombie extends EntityNetherBase implements IAnimatedEnt
 
         this.targetTasks.addTask(1, new EntityPiglinZombie.AIHurtByAggressor(this));
         this.targetTasks.addTask(2, new EntityPiglinZombie.AITargetAggressor(this));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
     }
 
     public boolean isAngry()
